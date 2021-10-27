@@ -1,7 +1,8 @@
 //This variable keeps track of whose turn it is.
 let activePlayer = 'X';
-//This array stores an array of moves. We use this ti determine win conditions.
+//This array stores an array of moves. We use this to determine win conditions.
 let selectedSquares = [];
+
 //This function is for placing an x or o in a square.
 function placeXOrO(squareNumber) {
     //This condition ensures a square hasn't been selected already.
@@ -30,7 +31,7 @@ function placeXOrO(squareNumber) {
         //If active player is anything other than 'X'.
         } else {
         //Changes the activePlayer to 'X'
-        activePlayer = 'X'
+        activePlayer = 'X';
         }
         //This function plays placement sound.
         audio('./media/place.mp3');
@@ -51,11 +52,11 @@ function placeXOrO(squareNumber) {
         //This variable stores a random number 0-8.
         let pickASquare;
         //This condition allows our while loop to keep trying if a square is selected already.
-        while(!success){
+        while(!success) {
             //A random number between 0 and 8 is selected.
             pickASquare = String(Math.floor(Math.random() * 9));
             //If the random number evaluated returns true, the square hasn't been selected yet.
-            if(placeXOrO(pickASquare)){
+            if (placeXOrO(pickASquare)){
                 //This line calls the function.
                 placeXOrO(pickASquare);
                 //This changes our boolean and ends the loop.
@@ -82,6 +83,8 @@ function checkWinConditions() {
     else if (arrayIncludes('2X', '5X', '8X')) {drawWinLine(508, 50, 508, 558) }
     // X 6, 4, 2 condition.
     else if (arrayIncludes('6X', '4X', '2X')) {drawWinLine(100, 508, 510, 90) }
+    // X 0, 4, 8 condition.
+    else if (arrayIncludes('0X', '4X', '8X')) {drawWinLine(100, 100, 520, 520) }
     // O 0, 1, 2 condition.
     else if (arrayIncludes('0O', '1O', '2O')) {drawWinLine(50, 100, 558, 100) }
     // O 3, 4, 5 condition.
@@ -146,7 +149,7 @@ function drawWinLine(coordX1, coordY1, coordX2, coordY2) {
     let x1 = coordX1,
         //This line indicates where the start of a lines y axis is.
         y1 = coordY1,
-        //This line indicates where the start of a lines x axis is.
+        //This line indicates where the end of a lines x axis is.
         x2 = coordX2,
         //This line indicates where the end of a lines x axis is.
         y2 = coordY2,
@@ -158,7 +161,7 @@ function drawWinLine(coordX1, coordY1, coordX2, coordY2) {
     function animateLineDrawing() {
         //This variable creates a loop.
         const animationLoop = requestAnimationFrame(animateLineDrawing);
-        //This method clears content from the last loop iteration.
+        //This method clears content from the loop iteration.
         c.clearRect(0, 0, 608, 608)
         //This method starts a new path
         c.beginPath();
@@ -177,10 +180,10 @@ function drawWinLine(coordX1, coordY1, coordX2, coordY2) {
             //This condition adds 10 to the previous end x point.
             if (x < x2) { x += 10; }
             //This condition adds 10 to the previous end y point.
-            if (y < y2) { y +=10; }
+            if (y < y2) { y += 10; }
             //This condition cancels our animation loop
             //if we've reach the end points.
-            if (x >= x2 && y >= y2) { cancelAnimationFrame(animationloop); } 
+            if (x >= x2 && y >= y2) { cancelAnimationFrame(animationLoop); } 
         }
         //This condition is similar to the one above.
         //This is necessary for the 6, 4, 2 win condition
@@ -209,7 +212,7 @@ function drawWinLine(coordX1, coordY1, coordX2, coordY2) {
     setTimeout(function () { clear(); resetGame(); }, 1000); 
     //This function resets the game in the event of a tie or a win.
     function resetGame() {
-        //this for loop iterates through each HTML square element
+        //This for loop iterates through each HTML square element
         for (let i = 0; i < 9; i++) {
             //This variable gets the html element of i.
             let square = document.getElementById(String(i))
