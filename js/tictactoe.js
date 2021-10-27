@@ -33,7 +33,7 @@ function placeXOrO(squareNumber) {
         activePlayer = 'X'
         }
         //This function plays placement sound.
-        Audio('./media/place.mp3');
+        audio('./media/place.mp3');
         //This condition checks to see if it is computers turn.
         if(activePlayer === 'O'){
             //This function disables clicking for computer choice.
@@ -57,7 +57,7 @@ function placeXOrO(squareNumber) {
             //If the random number evaluated returns true, the square hasn't been selected yet.
             if(placeXOrO(pickASquare)){
                 //This line calls the function.
-                placeXOrO(picksASquare);
+                placeXOrO(pickASquare);
                 //This changes our boolean and ends the loop.
                 success = true;
             };
